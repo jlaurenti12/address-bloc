@@ -1,13 +1,14 @@
 require_relative '../models/entry'
-  # #1
+
   RSpec.describe Entry do
-  # #2
+
     describe "attributes" do
+      # let allows for defining an entry method once in a spec file
       let(:entry) { Entry.new('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com') }
 
-      # #3
+      # communicates that the specs test the Entry attributes
       it "responds to name" do
-        # #4
+        # checks whether entry.name is valid code
         expect(entry).to respond_to(:name)
       end
 
@@ -33,12 +34,11 @@ require_relative '../models/entry'
      end
     end
 
-  # #5
+    # test of to_s instance method, which converts the Entry attributes to a string - kept separate from describe 'attributes'
     describe "#to_s" do
       it "prints an entry as a string" do
         entry = Entry.new('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
         expected_string = "Name: Ada Lovelace\nPhone Number: 010.012.1815\nEmail: augusta.king@lovelace.com"
-    # #6
         expect(entry.to_s).to eq(expected_string)
       end
     end

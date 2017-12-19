@@ -8,7 +8,7 @@ class Entry
     @email = email
   end
 
-  # #7
+  # method that converts the Entry attributes to a string
   def to_s
     "Name: #{name}\nPhone Number: #{phone_number}\nEmail: #{email}"
   end

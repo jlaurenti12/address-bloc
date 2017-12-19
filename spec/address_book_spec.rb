@@ -4,6 +4,7 @@ require_relative '../models/address_book'
 
     let(:book) { AddressBook.new }
 
+    # helper method which consolidates the redundant code -- can now pass in the particular name, number, and email address we want into this reusable helper method
     def check_entry(entry, expected_name, expected_number, expected_email)
       expect(entry.name).to eq expected_name
       expect(entry.phone_number).to eq expected_number
@@ -44,20 +45,21 @@ require_relative '../models/address_book'
     # Test that AddressBook's .import_from_csv() method is working as expected
     describe "#import_from_csv" do
       it "imports the correct number of entries" do
-        # #3
+        # call the import_from_csv method on the book object which is of type AddressBook (our data model). We pass import_from_csv the string entries.csv as a parameter
         book.import_from_csv("entries.csv")
+        # saves the size of the AddressBook.entries to our local variable book_size
         book_size = book.entries.size
 
-        # Check the size of the entries in AddressBook
+        # Checks the size of the entries in AddressBook
         expect(book_size).to eq 5
       end
 
+      # accesses the first entry in the array of entries that our AddressBook stores.
       it "imports the 1st entry" do
         book.import_from_csv("entries.csv")
         # Check the first entry
         entry_one = book.entries[0]
-
-        # #5
+        # Uses check_entry helper method
         check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
       end
 
@@ -133,6 +135,7 @@ require_relative '../models/address_book'
         check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
       end
 
+      #  tests for an entry that is similar to something that we know exists, but not exactly the same
       it "searches AddressBook for Billy" do
         book.import_from_csv("entries.csv")
         entry = book.binary_search("Billy")

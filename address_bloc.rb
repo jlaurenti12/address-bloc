@@ -1,9 +1,11 @@
 require_relative 'controllers/menu_controller'
 
-# #4
+# creates a new MenuController when AddressBloc starts
 menu = MenuController.new
-# #5
+
+# uses system "clear" to clear the command line
 system "clear"
 puts "Welcome to AddressBloc!"
-# #6
+
+# calls main_menu to display the menu
 menu.main_menu
